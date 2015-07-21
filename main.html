@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>The World In D3 - compilation of different D3 graphs</title>
+    <style>
+        svg{
+        	width: 1550px;
+        	height: 500px;
+        	border: 1px solid gray;
+
+        }
+
+        line {
+            shape-rendering: crispEdges;
+            stroke: #000000;
+        }
+
+        line.minor  {
+            stroke: #777777;
+            stroke-dasharray: 2,2;
+        }
+
+        path.domain {
+            fill: none;
+            stroke: black;
+        }
+
+        #selectCountryId{
+    	    margin-top: 10px;
+    	    border: 1px solid gray;
+    	    width: 100%;
+    	    border-radius: 10px;
+    	    text-align: center;
+        }
+
+        #countryTable thead{
+        	max-width: 500px;
+        	overflow: scroll;
+            overflow-y: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/queue.js"></script>
+    <script type="text/javascript" src="js/colorbrewer.js"></script>
+    <script type="text/javascript" src="js/gdpovertime.js"></script>
+</head>
+<body>
+    <div="svgContainer">
+	<svg></svg>
+	</div="svgContainer">
+	<div id="selectCountryId">
+	    <h1 style="margin-top: 0px;">Select The country</h1>
+	    <h2>Meter</h2>
+	    <p>Upper bound: <input type="text" id="upperBoundInput" maxlength="7" size="8"><input type="button" onclick="upperBoundClick()" value="change"></p>
+        
+        <div id="dataTable">
+            <table id="countryTable">
+            </table>
+        </div>
+	</div>
+	<script type="text/javascript">
+       
+	</script>
+</body>
+</html>
