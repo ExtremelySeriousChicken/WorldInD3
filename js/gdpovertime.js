@@ -8,24 +8,38 @@ window.onload = function(){
 * Modifies : The html
 * Effects  : THis function will produce a 
 */
-function printData(data){
-    console.log(data.length);
-    
+function printData(data, countryArray){
+ //now we want to split the table into groups of 25 countries  
     //add the header
     var table = document.getElementById("countryTable");
     var head  = document.createElement('thead');
     var th    = document.createElement('th');
     th.appendChild(document.createTextNode("Year"));
     head.appendChild(th);
-     for(var i = 0; i < 10; i++){
+     for(var i = 0; i < countryArray.length; i++){
          var th    = document.createElement('th');
-         th.appendChild(document.createTextNode(data[i]['Country Name']));
+         th.appendChild(document.createTextNode(countryArray[i]));
          head.appendChild(th);
      }
-     
-
+     table.appendChild(head);
     
-    table.appendChild(head);
+    //now insert the data
+    data.forEach(function(value, id){
+        var tr = document.createElement("tr");
+        console.log(value);
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(value['year']));
+        tr.appendChild(td);
+
+        for(var i = 0; i < countryArray.length; i++){
+            var td = document.createElement("td");
+            td.appendChild(document.createTextNode(value[countryArray[i]]));
+            tr.appendChild(td);
+        }
+        
+        table.appendChild(tr);
+    })
+    
 }
 /*
 * Requires : the input
@@ -45,7 +59,6 @@ function upperBoundClick(){
     var input = document.getElementById("upperBoundInput").value;
 
     if(isValid(input)){
-        console.log("call This!")
         yScale = d3.scale.linear().domain([0,input]).range([480,0]);
         // xScale = d3.scale.linear().domain([1960,2014]).range([0,980]);
 
@@ -105,9 +118,10 @@ function modifyData(data,years){
 	for(var i = 0; i < data.length; i++){
         for(var j = 0; j < years.length; j++){
         	if(data[i][years[j]] == ""){
-        		data[i][years[j]] = 0;
+        		data[i][years[j]] = 0.00;
         	}else{
         		data[i][years[j]] = parseFloat(data[i][years[j]]) / 1000000000;
+                data[i][years[j]] = data[i][years[j]].toFixed(2);
         	}
         	
         }
@@ -144,7 +158,7 @@ function viewableData(data, years){
 * Effects  : 
 */
 function drawGraph(viewedData,xScale, yScale){
-    fillScale = d3.scale.linear().domain([1,20]).range(["lightgreen","darkgreen"]);
+    fillScale = d3.scale.linear().domain([1,20]).range(["white","darkgreen"]);
 
     var n = 0;
 
@@ -170,8 +184,8 @@ function drawGraph(viewedData,xScale, yScale){
               .attr("class","countryData")
               .attr("d", countryArea(viewedData))
               .attr("fill", fillScale(n))
-              .attr("stroke", "none")
-              .attr("stroke-width", 2)
+              .attr("stroke", "green")
+              .attr("stroke-width", 1)
               .style("opacity", .5);
 
             n++;
@@ -179,6 +193,17 @@ function drawGraph(viewedData,xScale, yScale){
     }
 }
 
+/*
+* 
+*/
+function getCountryNames(data){
+    var array = [];
+    for(var i = 0; i < data.length; i++){
+        array.push(data[i]["Country Name"]);
+    }
+
+    return array;
+}
 /*
 * Requires : the data from the file
 * Mofidies : the page
@@ -193,7 +218,7 @@ function processData(data){
     var newArray = [];
 
     //now get the data only for the first 20 country
-    for(var i = 35; i < 60; i++){
+    for(var i = 40; i < 60; i++){
         newArray.push(data[i]);
     }
 
@@ -201,11 +226,11 @@ function processData(data){
 
     data = newArray;
 
-    printData(data);
+    var countryArray = getCountryNames(data);
 
     viewedData = viewableData(data,years);
 
-    console.log(viewedData);
+    printData(viewedData, countryArray);
 
     //declaring the scale
     yScale = d3.scale.linear().domain([0,60000]).range([480,0]);
