@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>The World In D3 - compilation of different D3 graphs</title>
+    <style>
+        svg{
+        	width: 1550px;
+        	height: 500px;
+        	border: 1px solid gray;
+
+        }
+
+        line {
+            shape-rendering: crispEdges;
+            stroke: #000000;
+        }
+
+        line.minor  {
+            stroke: #777777;
+            stroke-dasharray: 2,2;
+        }
+
+        path.domain {
+            fill: none;
+            stroke: black;
+        }
+    </style>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/queue.js"></script>
+    <script type="text/javascript" src="js/colorbrewer.js"></script>
+    <script type="text/javascript" src="js/pop_overtime_barchart.js"></script>
+</head>
+<body>
+    <div id="svgContainer">
+        <svg></svg>    	
+    </div>
+
+    <div id="selectCountry">
+    </div>
+</body>
+</html>
