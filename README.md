@@ -9,3 +9,7 @@ Most of the data from this application is taken from World Bank's website:
 http://data.worldbank.org/
 
 World Population Data: http://data.worldbank.org/indicator/SP.POP.TOTL
+
+##Disclaimer
+
+Although they are from the references, some of the data are modified so as to make it easier to code.
