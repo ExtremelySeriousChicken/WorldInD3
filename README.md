@@ -12,4 +12,6 @@ World Population Data: http://data.worldbank.org/indicator/SP.POP.TOTL
 
 ##Disclaimer
 
-Although they are from the references, some of the data are modified so as to make it easier to code.
+Throughout the data, there are modifications to the file(s) to reaosns as follows:
+1. To make the data easier to code
+2. To generate new data that are useful for further development
