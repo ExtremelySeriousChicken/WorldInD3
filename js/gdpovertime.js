@@ -252,7 +252,7 @@ function processData(data){
               .tickSize(480)
               .ticks(5);
 
-    //now draw the axes
+    2//now draw the axes
     d3.select("svg").append("g").attr("id","gdpTimeyAxisG").call(yAxis);
     d3.select("svg").append("g").attr("id","gdpTimexAxisG").call(xAxis);
 

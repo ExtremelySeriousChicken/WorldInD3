@@ -3,7 +3,7 @@
     <title>The World In D3 - compilation of different D3 graphs</title>
     <style>
         svg{
-        	width: 1550px;
+        	width: 1600px;
         	height: 500px;
         	border: 1px solid gray;
 
@@ -23,6 +23,15 @@
             fill: none;
             stroke: black;
         }
+
+        #selectCountry{
+        	text-align: center;
+        }
+
+        table{
+            width: 1500px;
+            overflow-x: scroll;
+        }
     </style>
     <script type="text/javascript" src="js/d3.v3.min.js"></script>
     <script type="text/javascript" src="js/queue.js"></script>
@@ -35,6 +44,21 @@
     </div>
 
     <div id="selectCountry">
+    <h1>Population Trend</h1>
+    <div id="barchart Input">
+        <p><label>Country :</label>
+        <select id="countryOption">
+        </select></p>
+
+        <p><input type="button" id="submitBarChart" onclick="processBarChart()" value="process!"></p>
+    </div>
+    <div id="countryData">
+        <h1 id="countryName"></h1>
+    	<table id="countryTable">
+            <tr class="countryTr">
+            </tr>
+        </table>
+    </div>
     </div>
 </body>
 </html>
